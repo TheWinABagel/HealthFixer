@@ -2,11 +2,9 @@ package com.bagel;
 
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,5 +41,17 @@ public class HealthFixer implements ModInitializer {
 			}
 		});
 
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(Commands.literal("healthfixer").then(Commands.literal("testHealth")
+				.requires(c -> c.hasPermission(2))
+				.executes(context -> {
+					context.getSource().getPlayerOrException().setHealth(NaN);
+					return 1;
+				}))));
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> dispatcher.register(Commands.literal("healthfixer").then(Commands.literal("testAbsorption")
+				.requires(c -> c.hasPermission(2))
+				.executes(context -> {
+					context.getSource().getPlayerOrException().setAbsorptionAmount(NaN);
+					return 1;
+				}))));
 	}
 }
