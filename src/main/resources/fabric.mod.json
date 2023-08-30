@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "healthfixer",
+	"version": "${version}",
+	"name": "healthfixer",
+	"description": "Fixes health being NaN upon logging out",
+	"authors": [
+		"TheWinABagel"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/healthfixer/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.bagel.HealthFixer"
+		],
+		"client": [
+			"com.bagel.ClientHealthFixer"
+		]
+	},
+	"mixins": [
+		"healthfixer.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.06",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
