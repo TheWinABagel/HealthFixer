@@ -19,7 +19,8 @@ public class LivingEntityMixin {
             HealthFixer.LOGGER.warn("A mod tried to set NaN absorption to entity {}!", ((LivingEntity) (Object) this));
             if (((LivingEntity) (Object) this).getServer() != null) {
                 ((LivingEntity) (Object) this).getServer().getPlayerList().getPlayers().forEach(player -> {
-                    player.displayClientMessage(Component.literal("Something tried to set a non number absorption, this is bad! Check server logs for more info!").withStyle(ChatFormatting.RED), false);
+                    if (player.hasPermissions(4))
+                        player.displayClientMessage(Component.literal("Something tried to set a non number absorption, this is bad! Check server logs for more info!").withStyle(ChatFormatting.RED), false);
                 });
             }
             ci.cancel();
@@ -33,7 +34,8 @@ public class LivingEntityMixin {
             HealthFixer.LOGGER.warn("A mod tried to set NaN health to entity {}!", ((LivingEntity) (Object) this));
             if (((LivingEntity) (Object) this).getServer() != null) {
                 ((LivingEntity) (Object) this).getServer().getPlayerList().getPlayers().forEach(player -> {
-                    player.displayClientMessage(Component.literal("Something tried to set a non number health, this is bad! Check server logs for more info!").withStyle(ChatFormatting.RED), false);
+                    if (player.hasPermissions(4))
+                        player.displayClientMessage(Component.literal("Something tried to set a non number health, this is bad! Check server logs for more info!").withStyle(ChatFormatting.RED), false);
                 });
             }
             ci.cancel();
